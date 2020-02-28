@@ -6,8 +6,12 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
+
 	"github.com/gorilla/mux"
 )
+
+const PORT = 3030
 
 var books []details.Book
 
@@ -70,5 +74,5 @@ func main() {
 	router.HandleFunc("/addBook", CreateBook).Methods("POST")
 	router.HandleFunc("/books", UpdateBook).Methods("PUT")
 	router.HandleFunc("/deletebyid/{id}", DeleteBook).Methods("DELETE")
-	log.Fatal(http.ListenAndServe(":3030", router))
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(PORT)+"", router))
 }
